@@ -23,7 +23,7 @@
       ];
 
       perSystem =
-        { config, pkgs, ... }:
+        { config, pkgs, system, ... }:
         {
           devShells.default = pkgs.mkShell {
             packages = [
@@ -31,7 +31,7 @@
               pkgs.local.example2
             ];
           };
-          hydraJobs = config.packages;
+          flake.hydraJobs.${system} = config.packages;
         };
     };
 }
