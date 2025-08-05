@@ -31,6 +31,7 @@
               pkgs.local.example2
             ];
           };
+          hydraJobs = config.packages;
         };
     };
 }
