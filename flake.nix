@@ -20,6 +20,11 @@
         ./imports/pkgs.nix
         ./imports/pkgs-all.nix
         ./imports/pkgs-by-name.nix
+        # ⬇⬇  NEW little module
+        ({ config, ... }: {
+          flake.hydraJobs =
+            builtins.mapAttrs (_: ps: ps.packages) config.allSystems;
+        })
       ];
 
       perSystem =
@@ -31,7 +36,6 @@
               pkgs.local.example2
             ];
           };
-          flake.hydraJobs.${system} = config.packages;
         };
     };
 }
